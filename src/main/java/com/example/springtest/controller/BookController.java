@@ -40,4 +40,25 @@ public class BookController {
             return "error";
         }
     }
+
+    @GetMapping("/findById/{id}")
+    public Book findById(@PathVariable("id") Integer id){
+        return bookRepository.findById(id).get();
+    }
+
+    @PutMapping("/update")
+    public String update(@RequestBody Book book){
+        Book save = bookRepository.save(book);
+        if(save != null){
+            return "success";
+        }
+        else {
+            return "error";
+        }
+    }
+
+    @DeleteMapping("/deleteById/{id}")
+    public void deleteById(@PathVariable("id") Integer id){
+        bookRepository.deleteById(id);
+    }
 }
